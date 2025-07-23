@@ -5,183 +5,603 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luminaires - Déco Élégance</title>
     <style>
-    
-/* Collection Header */
-.collection-header {
-    text-align: center;
-    padding: 4rem 2rem;
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(244, 228, 188, 0.05));
-    margin-bottom: 2rem;
+ :root {
+            --gold: #d4af37;
+            --light-gold: #f4e4bc;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #d4af37, #f4e4bc);
+            color: #333;
+            min-height: 100vh;
+        }
+        
+        header {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+       /* ========== HEADER STYLES ========== */
+header {
+    background-color: #fff;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 15px 0;
 }
 
-.collection-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo a {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #d4af37;
+    text-decoration: none;
     background: linear-gradient(135deg, #d4af37, #f4e4bc);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease;
 }
 
-.collection-header p {
-    color: #555;
-    max-width: 700px;
-    margin: 0 auto;
-    font-size: 1.1rem;
+.logo a:hover {
+    opacity: 0.8;
 }
 
-/* Products Grid */
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
+.main-menu {
+    display: flex;
+    list-style: none;
+    gap: 1.8rem;
+    margin: 0;
+    padding: 0;
 }
 
-.product-card {
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-}
-
-.product-img {
-    height: 300px;
+.main-menu li {
     position: relative;
-    overflow: hidden;
 }
 
-.product-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s;
+.main-menu li a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 8px 0;
+    transition: all 0.3s ease;
+    position: relative;
 }
 
-.product-card:hover .product-img img {
-    transform: scale(1.05);
+.main-menu li a:hover {
+    color: #d4af37;
 }
 
-.product-badge {
+.main-menu li a::after {
+    content: '';
     position: absolute;
-    top: 15px;
-    right: 15px;
-    background-color: #d4af37;
-    color: white;
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #d4af37, #f4e4bc);
+    transition: width 0.3s ease;
 }
 
-.product-info {
-    padding: 1.5rem;
+.main-menu li a:hover::after {
+    width: 100%;
 }
 
-.product-info h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
-    color: #333;
-}
-
-.product-description {
-    color: #666;
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
-    line-height: 1.5;
-}
-
-.product-price {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #333;
-    margin: 1rem 0;
-}
-
-.product-origin {
+.user-actions {
     display: flex;
     align-items: center;
-    margin-bottom: 0.5rem;
+    gap: 1.5rem;
+}
+
+.user-actions input[type="search"] {
+    padding: 8px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 25px;
+    outline: none;
     font-size: 0.9rem;
-    color: #777;
+    transition: all 0.3s;
+    width: 180px;
 }
 
-.product-origin img {
-    width: 20px;
-    margin-right: 0.5rem;
+.user-actions input[type="search"]:focus {
+    border-color: #d4af37;
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
 }
 
-.product-details {
-    font-size: 0.85rem;
-    color: #888;
-    margin-bottom: 1.5rem;
-}
-
-.product-actions {
+.icon-link {
     display: flex;
-    gap: 1rem;
-}
-
-.btn {
-    padding: 0.7rem 1.2rem;
-    background: linear-gradient(135deg, #d4af37, #f4e4bc);
+    align-items: center;
+    gap: 0.5rem;
     color: #333;
-    border: none;
-    border-radius: 5px;
-    font-weight: 600;
-    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.9rem;
     transition: all 0.3s;
-    flex: 1;
 }
 
-.btn:hover {
-    background: linear-gradient(135deg, #f4e4bc, #d4af37);
-    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-}
-
-.btn-outline {
-    padding: 0.7rem 1.2rem;
-    background: transparent;
-    border: 1px solid #d4af37;
+.icon-link:hover {
     color: #d4af37;
-    border-radius: 5px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    flex: 1;
 }
 
-.btn-outline:hover {
-    background: rgba(212, 175, 55, 0.1);
+.icon-link img {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s;
 }
 
-/* Modal Styles (identique à la page tapis) */
-.modal {
-    /* ... (reprendre le même style que la page tapis) ... */
+.icon-link:hover img {
+    transform: scale(1.1);
 }
 
-/* Responsive */
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 1024px) {
+    .main-menu {
+        gap: 1.2rem;
+    }
+    
+    .user-actions input[type="search"] {
+        width: 150px;
+    }
+}
+
 @media (max-width: 768px) {
-    .products-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .collection-header h1 {
-        font-size: 2rem;
-    }
-    
-    .product-actions {
+    nav {
         flex-direction: column;
+        gap: 1rem;
+        padding: 0 15px;
+    }
+    
+    .main-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.8rem 1.2rem;
+    }
+    
+    .user-actions {
+        width: 100%;
+        justify-content: center;
     }
 }
+
+@media (max-width: 480px) {
+    .logo a {
+        font-size: 1.5rem;
+    }
+    
+    .main-menu {
+        gap: 0.5rem 1rem;
+    }
+    
+    .main-menu li a {
+        font-size: 0.9rem;
+    }
+    
+    .user-actions {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .user-actions input[type="search"] {
+        width: 100%;
+    }
+}
+        .breadcrumb {
+            padding: 20px 0;
+            font-size: 14px;
+        }
+        
+        .breadcrumb a {
+            color: #555;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .breadcrumb span {
+            color: var(--gold);
+            margin: 0 5px;
+        }
+        
+        .collection-header {
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        .collection-header h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .collection-header p {
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 30px 0;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-img {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--gold);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .product-info .product-description {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .product-info .product-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .product-info .product-origin {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 12px;
+            color: #888;
+        }
+        
+        .product-info .product-origin img {
+            width: 20px;
+            margin-right: 5px;
+        }
+        
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--gold), var(--light-gold));
+            color: #333;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+        
+        .btn-outline:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+        
+        .product-details {
+            margin-top: 5px;
+            font-size: 13px;
+            color: #888;
+        }
+        
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-column h3 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--gold);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 50px auto;
+            max-width: 900px;
+            border-radius: 10px;
+            overflow: hidden;
+            animation: modalFadeIn 0.3s;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .modal-header h2 {
+            font-size: 24px;
+        }
+        
+        .close-modal {
+            font-size: 30px;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: #333;
+        }
+        
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        
+        .modal-product {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .modal-product-images {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 10px;
+        }
+        
+        .modal-thumbnails {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .modal-thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+        
+        .modal-thumbnail.active {
+            border-color: var(--gold);
+        }
+        
+        .modal-main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        .modal-product-info h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        
+        .modal-product-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+        
+        .modal-product-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .modal-product-details {
+            margin-bottom: 20px;
+        }
+        
+        .modal-product-details h4 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .modal-product-details ul {
+            list-style-position: inside;
+            color: #666;
+        }
+        
+        .modal-product-details li {
+            margin-bottom: 5px;
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background-color: #f5f5f5;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .quantity-input {
+            width: 50px;
+            height: 30px;
+            text-align: center;
+            border: 1px solid #ddd;
+            margin: 0 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .modal-product {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-product-images {
+                grid-template-columns: 60px 1fr;
+            }
+            
+            .modal-thumbnail {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .modal-main-image {
+                height: 300px;
+            }
+        }
  
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -204,12 +624,7 @@
             </ul>
             <div class="user-actions">
                 <input type="search" placeholder="Rechercher...">
-                <a href="mon-compte.html" class="icon-link">
-                    <img src="images/icon-account.png" alt="Mon compte"> Mon compte
-                </a>
-                <a href="panier.html" class="icon-link">
-                    <img src="images/icon-cart.png" alt="Panier"> Panier
-                </a>
+              
             </div>
         </nav>
     </header>
@@ -224,15 +639,15 @@
             <!-- Luminaire 1 -->
             <div class="product-card" data-product="1">
                 <div class="product-img">
-                    <img src="images/luminaire1.jpg" alt="Suspension en verre soufflé">
+                    <img src="https://media.istockphoto.com/id/1639202832/fr/photo/fixation-de-luminaire.webp?a=1&b=1&s=612x612&w=0&k=20&c=Nye4-KFhovI60T3RigKMsWID0nNpOd764kKO8X8hNMM=" alt="Suspension en verre soufflé">
                     <span class="product-badge">Nouveau</span>
                 </div>
                 <div class="product-info">
                     <h3>Suspension "Éther"</h3>
                     <p class="product-description">Suspension en verre soufflé à la main, diffusion lumineuse douce et uniforme.</p>
-                    <div class="product-price">249 €</div>
+                    <div class="product-price">25 000 CFA</div>
                     <div class="product-origin">
-                        <img src="https://flagcdn.com/w20/it.png" alt="Italie"> Fabriqué en Italie
+                        <img src="https://media.istockphoto.com/id/1639202832/fr/photo/fixation-de-luminaire.webp?a=1&b=1&s=612x612&w=0&k=20&c=Nye4-KFhovI60T3RigKMsWID0nNpOd764kKO8X8hNMM=" alt="Italie"> Fabriqué en Italie
                     </div>
                     <div class="product-details">Hauteur: 45cm · Diamètre: 35cm</div>
                     <div class="product-actions">
@@ -245,14 +660,14 @@
             <!-- Luminaire 2 -->
             <div class="product-card" data-product="2">
                 <div class="product-img">
-                    <img src="images/luminaire2.jpg" alt="Lampe à poser en marbre">
+                    <img src="https://images.unsplash.com/photo-1542728928-1413d1894ed1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGxhbXBlfGVufDB8fDB8fHww" alt="Lampe à poser en marbre">
                 </div>
                 <div class="product-info">
                     <h3>Lampe "Minéral"</h3>
                     <p class="product-description">Lampe à poser en marbre blanc de Carrare avec abat-jour en lin.</p>
-                    <div class="product-price">179 €</div>
+                    <div class="product-price">25 000 CFA</div>
                     <div class="product-origin">
-                        <img src="https://flagcdn.com/w20/fr.png" alt="France"> Fabriqué en France
+                        <img src="https://images.unsplash.com/photo-1542728928-1413d1894ed1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGxhbXBlfGVufDB8fDB8fHww" alt="France"> Fabriqué en France
                     </div>
                     <div class="product-details">Hauteur: 55cm · Matière: Marbre</div>
                     <div class="product-actions">
@@ -265,15 +680,15 @@
             <!-- Luminaire 3 -->
             <div class="product-card" data-product="3">
                 <div class="product-img">
-                    <img src="images/luminaire3.jpg" alt="Applique murale design">
+                    <img src="https://images.unsplash.com/photo-1540932239986-30128078f3c5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bGFtcGV8ZW58MHx8MHx8fDA%3D" alt="Applique murale design">
                     <span class="product-badge">Best-seller</span>
                 </div>
                 <div class="product-info">
                     <h3>Applique "Filament"</h3>
                     <p class="product-description">Applique murale design avec ampoule filament visible, style industriel.</p>
-                    <div class="product-price">129 €</div>
+                    <div class="product-price">30 000 CFA</div>
                     <div class="product-origin">
-                        <img src="https://flagcdn.com/w20/es.png" alt="Espagne"> Fabriqué en Espagne
+                        <img src="https://images.unsplash.com/photo-1540932239986-30128078f3c5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bGFtcGV8ZW58MHx8MHx8fDA%3D" alt="Espagne"> Fabriqué en Espagne
                     </div>
                     <div class="product-details">Longueur: 60cm · Métal brossé</div>
                     <div class="product-actions">
@@ -283,66 +698,13 @@
                 </div>
             </div>
 
-            <!-- Luminaire 4 -->
-            <div class="product-card" data-product="4">
-                <div class="product-img">
-                    <img src="images/luminaire4.jpg" alt="Lustre contemporain">
-                </div>
-                <div class="product-info">
-                    <h3>Lustre "Aurore"</h3>
-                    <p class="product-description">Lustre contemporain à multiples bras avec cristaux taillés à la main.</p>
-                    <div class="product-price">899 €</div>
-                    <div class="product-origin">
-                        <img src="https://flagcdn.com/w20/cz.png" alt="République Tchèque"> Fabriqué en République Tchèque
-                    </div>
-                    <div class="product-details">Diamètre: 80cm · 12 ampoules</div>
-                    <div class="product-actions">
-                        <button class="btn-outline" onclick="openModal(4)">Détails</button>
-                        <button class="btn">Ajouter au panier</button>
-                    </div>
-                </div>
-            </div>
+           
 
-            <!-- Luminaire 5 -->
-            <div class="product-card" data-product="5">
-                <div class="product-img">
-                    <img src="images/luminaire5.jpg" alt="Lampe de table design">
-                </div>
-                <div class="product-info">
-                    <h3>Lampe "Nebula"</h3>
-                    <p class="product-description">Lampe de table design avec base en céramique et diffuseur en verre dépoli.</p>
-                    <div class="product-price">159 €</div>
-                    <div class="product-origin">
-                        <img src="https://flagcdn.com/w20/pt.png" alt="Portugal"> Fabriqué au Portugal
-                    </div>
-                    <div class="product-details">Hauteur: 40cm · Céramique</div>
-                    <div class="product-actions">
-                        <button class="btn-outline" onclick="openModal(5)">Détails</button>
-                        <button class="btn">Ajouter au panier</button>
-                    </div>
-                </div>
-            </div>
+           
 
-            <!-- Luminaire 6 -->
-            <div class="product-card" data-product="6">
-                <div class="product-img">
-                    <img src="images/luminaire6.jpg" alt="Plaque LED design">
-                    <span class="product-badge">Promo</span>
-                </div>
-                <div class="product-info">
-                    <h3>Plaque LED "Pixel"</h3>
-                    <p class="product-description">Plaque LED ultra-plate avec technologie dimmable et température réglable.</p>
-                    <div class="product-price">349 € <span style="text-decoration: line-through; color: #999; font-size: 16px; margin-left: 5px;">449 €</span></div>
-                    <div class="product-origin">
-                        <img src="https://flagcdn.com/w20/de.png" alt="Allemagne"> Fabriqué en Allemagne
-                    </div>
-                    <div class="product-details">60x60cm · 3000-6000K</div>
-                    <div class="product-actions">
-                        <button class="btn-outline" onclick="openModal(6)">Détails</button>
-                        <button class="btn">Ajouter au panier</button>
-                    </div>
-                </div>
-            </div>
+            
+                
+        
         </section>
 
         <!-- Modal -->
@@ -356,15 +718,14 @@
                     <div class="modal-product">
                         <div class="modal-product-images">
                             <div class="modal-thumbnails">
-                                <img src="images/luminaire1.jpg" alt="Suspension Éther" class="modal-thumbnail active" onclick="changeMainImage(this)">
-                                <img src="images/luminaire1_detail.jpg" alt="Détail verre" class="modal-thumbnail" onclick="changeMainImage(this)">
-                                <img src="images/luminaire1_ambiance.jpg" alt="En situation" class="modal-thumbnail" onclick="changeMainImage(this)">
+                                <img src="https://media.istockphoto.com/id/1639202832/fr/photo/fixation-de-luminaire.webp?a=1&b=1&s=612x612&w=0&k=20&c=Nye4-KFhovI60T3RigKMsWID0nNpOd764kKO8X8hNMM=" alt="Suspension Éther" class="modal-thumbnail active" onclick="changeMainImage(this)">
+                                
                             </div>
-                            <img src="images/luminaire1.jpg" alt="Suspension Éther" class="modal-main-image">
+                            <img src="https://media.istockphoto.com/id/1639202832/fr/photo/fixation-de-luminaire.webp?a=1&b=1&s=612x612&w=0&k=20&c=Nye4-KFhovI60T3RigKMsWID0nNpOd764kKO8X8hNMM=" alt="Suspension Éther" class="modal-main-image">
                         </div>
                         <div class="modal-product-info">
                             <h3 id="modalProductName">Suspension "Éther"</h3>
-                            <div class="modal-product-price" id="modalProductPrice">249 €</div>
+                            <div class="modal-product-price" id="modalProductPrice">15 000 CFA</div>
                             <div class="modal-product-description" id="modalProductDescription">
                                 Cette suspension artisanale en verre soufflé à la main diffuse une lumière douce et uniforme, créant une ambiance chaleureuse. Chaque pièce est unique grâce au travail manuel des artisans verriers italiens.
                             </div>

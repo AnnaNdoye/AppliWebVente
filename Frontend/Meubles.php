@@ -521,7 +521,7 @@
                     <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bGl0fGVufDB8fDB8fHww" alt="Lit double">
                 </div>
                 <div class="product-info">
-                    <h3>Tapis Moderne "Nordic"</h3>
+                    <h3>Lit</h3>
                     <p class="product-description">Lit double tres résistant, facile d'entretien.</p>
                     <div class="product-price">350 000 CFA</div>
                     <div class="product-origin">
