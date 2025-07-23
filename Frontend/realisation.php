@@ -31,9 +31,9 @@ nav {
 .logo a {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #ffa500;
+    color: #d4af37;
     text-decoration: none;
-    background: linear-gradient(135deg, #ffa500, #ff8c00);
+    background: linear-gradient(135deg, #d4af37, #f4e4bc);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -57,7 +57,7 @@ nav ul {
 }
 
 .nav-links a:hover {
-    color: #ff8c00;
+    color:#d4af37 ;
 }
 
 nav ul li {
@@ -81,7 +81,7 @@ nav ul li a::after {
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, #ffa500, #ff8c00);
+    background: linear-gradient(135deg, #d4af37, #f4e4bc);
     transition: width 0.3s ease;
 }
 
@@ -90,11 +90,11 @@ nav ul li a:hover::after {
 }
 
 nav ul li a:hover {
-    color: #ffa500;
+    color: #d4af37;
 }
 
 nav ul li a.active {
-    color: #ffa500;
+    color: #d4af37;
     font-weight: 600;
 }
 
@@ -207,7 +207,7 @@ main {
 .realisations-header h1 {
     font-size: 2.8rem;
     margin-bottom: 1rem;
-    background: linear-gradient(135deg, #ffa500, #ff8c00);
+    background:  linear-gradient(135deg, #d4af37, #f4e4bc);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -231,8 +231,8 @@ main {
 .filter-btn {
     padding: 0.7rem 1.5rem;
     background: none;
-    border: 1px solid #ffa500;
-    color: #ffa500;
+    border: 1px solid #d4af37;
+    color: #d4af37;
     border-radius: 30px;
     cursor: pointer;
     transition: all 0.3s;
