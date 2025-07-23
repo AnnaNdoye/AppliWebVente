@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votre Panier - Déco Élégance</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="index.html">Déco Élégance</a></div>
+            <ul class="main-menu">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="produits.html">Produits</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="realisations.html">Réalisations</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="user-actions">
+                <input type="search" placeholder="Rechercher...">
+                <a href="mon-compte.html" class="icon-link">
+                    <img src="images/icon-account.png" alt="Mon compte"> Mon compte
+                </a>
+                <a href="panier.html" class="icon-link">
+                    <img src="images/icon-cart.png" alt="Panier"> Panier
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>Votre Panier</h1>
+        </section>
+
+        <section class="cart-section">
+            <div class="cart-items">
+                <div class="cart-item">
+                    <img src="images/tapis_boheme_petit.jpg" alt="Tapis Bohème">
+                    <div class="item-details">
+                        <h3>Tapis Bohème Coton "Rêve Nomade"</h3>
+                        <p>Prix unitaire: <span>30 000 FCFA</span></p>
+                        <div class="quantity-control">
+                            <button class="decrease-qty">-</button>
+                            <input type="number" value="1" min="1" class="item-qty">
+                            <button class="increase-qty">+</button>
+                        </div>
+                        <button class="remove-item">Supprimer</button>
+                    </div>
+                    <div class="item-total">
+                        <p>Total: <span>30 000 FCFA</span></p>
+                    </div>
+                </div>
+                <div class="cart-item">
+                    <img src="images/coussin_velours_petit.jpg" alt="Coussin Velours">
+                    <div class="item-details">
+                        <h3>Coussin Velours "Douceur Rose"</h3>
+                        <p>Prix unitaire: <span>15 000 FCFA</span></p>
+                        <div class="quantity-control">
+                            <button class="decrease-qty">-</button>
+                            <input type="number" value="2" min="1" class="item-qty">
+                            <button class="increase-qty">+</button>
+                        </div>
+                        <button class="remove-item">Supprimer</button>
+                    </div>
+                    <div class="item-total">
+                        <p>Total: <span>30 000 FCFA</span></p>
+                    </div>
+                </div>
+                <div class="cart-item service-item">
+                    <div class="item-details">
+                        <h3>Réservation de service: Aménagement d'Intérieur</h3>
+                        <p>Date souhaitée: 2025-08-10</p>
+                        <p>Prix estimé: <span>Sur devis</span></p>
+                    </div>
+                    <button class="remove-item">Annuler la réservation</button>
+                </div>
+                </div>
+
+            <div class="cart-summary">
+                <h2>Résumé du Panier</h2>
+                <p>Sous-total: <span id="subtotal">60 000 FCFA</span></p>
+                <p>Livraison: <span id="shipping">10 000 FCFA</span></p>
+                <p class="total">Total à payer: <span id="grand-total">70 000 FCFA</span></p>
+                <button class="checkout-btn">Passer à la commande</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Déco Élégance. Tous droits réservés.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
