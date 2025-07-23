@@ -1,3 +1,7 @@
+<?php
+require_once '../Backend/fonction.php';
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
