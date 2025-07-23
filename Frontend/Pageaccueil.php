@@ -22,6 +22,7 @@ require_once '../Backend/fonction.php';
                     <li><a href="#contact">Contact</a></li>
                     <li><a href="realisation.html">Realisation</a></li>
                      <li><a href="mon-compte.php">S'identifier</a></li>
+                      <li><a href="panier.html">Mon panier</a></li>
                 </ul>
             </nav>
             <div class="contact-header">
