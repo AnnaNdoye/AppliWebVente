@@ -1,6 +1,6 @@
 -- Création de la base
-CREATE DATABASE deco_elegance;
-USE deco_elegance;
+--CREATE DATABASE deco_elegance;
+--USE deco_elegance;
 
 
 
