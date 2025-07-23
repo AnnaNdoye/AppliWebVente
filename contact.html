@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactez-nous - Déco Élégance</title>
+    <style>
+        /* Variables (à ajouter si pas déjà dans votre fichier) */
+:root {
+    --gold: #d4af37;
+    --light-gold: #f4e4bc;
+    --dark: #333;
+    --light: #f9f9f9;
+    --white: #fff;
+    --gray: #eee;
+    --dark-gray: #777;
+}
+
+/* Styles spécifiques à la page Contact */
+.page-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(244, 228, 188, 0.1));
+    border-radius: 10px;
+}
+
+.page-header h1 {
+    font-size: 36px;
+    color: var(--gold);
+    margin-bottom: 15px;
+}
+
+.page-header p {
+    color: var(--dark);
+    font-size: 18px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+/* ========== NAVIGATION PRINCIPALE ========== */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1000;
+}
+
+.logo a {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #d4af37;
+    text-decoration: none;
+    background: linear-gradient(135deg, #d4af37, #f4e4bc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.logo a:hover {
+    opacity: 0.9;
+}
+
+.main-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-menu li {
+    position: relative;
+    margin: 0 0.8rem;
+}
+
+.main-menu li a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.main-menu li a:hover {
+    color: #d4af37;
+    background-color: rgba(212, 175, 55, 0.1);
+}
+
+.main-menu li a.active {
+    color: #d4af37;
+    font-weight: 600;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.user-actions input[type="search"] {
+    padding: 0.6rem 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 25px;
+    outline: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    width: 180px;
+}
+
+.user-actions input[type="search"]:focus {
+    border-color: #d4af37;
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+}
+
+.icon-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.icon-link:hover {
+    color: #d4af37;
+}
+
+.icon-link img {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.icon-link:hover img {
+    transform: scale(1.1);
+}
+
+/* ========== MENU BURGER (RESPONSIVE) ========== */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: #333;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+/* ========== MEDIA QUERIES ========== */
+@media (max-width: 992px) {
+    nav {
+        flex-wrap: wrap;
+        padding: 1rem;
+    }
+    
+    .menu-toggle {
+        display: block;
+        order: 1;
+    }
+    
+    .logo {
+        order: 2;
+        flex-grow: 1;
+        text-align: center;
+    }
+    
+    .user-actions {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        margin-top: 1rem;
+        display: none;
+    }
+    
+    .main-menu {
+        order: 4;
+        width: 100%;
+        flex-direction: column;
+        display: none;
+        margin-top: 1rem;
+    }
+    
+    .main-menu li {
+        margin: 0.3rem 0;
+    }
+    
+    .main-menu li a {
+        display: block;
+        padding: 0.8rem 1rem;
+    }
+    
+    .user-actions.active,
+    .main-menu.active {
+        display: flex;
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+}
+
+@media (min-width: 993px) {
+    .main-menu,
+    .user-actions {
+        display: flex !important;
+    }
+}
+.contact-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.contact-form-container, 
+.contact-info-container {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.contact-form-container h2,
+.contact-info-container h2 {
+    color: var(--gold);
+    margin-bottom: 25px;
+    font-size: 24px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.contact-form-container h2::after,
+.contact-info-container h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--light-gold));
+}
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#contact-form label {
+    font-weight: 500;
+    color: var(--dark);
+    margin-bottom: -15px;
+}
+
+#contact-form input,
+#contact-form textarea {
+    padding: 12px 15px;
+    border: 1px solid var(--gray);
+    border-radius: 5px;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+#contact-form textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+    border-color: var(--gold);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+}
+
+#contact-form button {
+    padding: 14px;
+    background: linear-gradient(135deg, var(--gold), var(--light-gold));
+    color: var(--dark);
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#contact-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+}
+
+.contact-info-container p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.contact-info-container strong {
+    color: var(--gold);
+}
+
+.social-media {
+    margin: 25px 0;
+}
+
+.social-media h3 {
+    color: var(--gold);
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.social-media a {
+    display: inline-block;
+    margin-right: 15px;
+    padding: 8px 15px;
+    background-color: rgba(212, 175, 55, 0.1);
+    color: var(--dark);
+    text-decoration: none;
+    border-radius: 20px;
+    transition: all 0.3s;
+}
+
+.social-media a:hover {
+    background-color: rgba(212, 175, 55, 0.2);
+    color: var(--gold);
+}
+
+.map-container {
+    margin-top: 30px;
+}
+
+.map-container h3 {
+    color: var(--gold);
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.map-container iframe {
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Message de confirmation */
+#form-success {
+    display: none;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: rgba(46, 204, 113, 0.2);
+    color: #27ae60;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contact-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .page-header {
+        padding: 30px 15px;
+    }
+    
+    .page-header h1 {
+        font-size: 28px;
+    }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="index.html">Déco Élégance</a></div>
+            <ul class="main-menu">
+                <li><a href="Pageaccueil.html">Accueil</a></li>
+                <li><a href="Produit.html">Produits</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="realisation.html">Réalisations</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+          
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>Contactez-nous</h1>
+            <p>Nous sommes là pour répondre à toutes vos questions et vous accompagner dans vos projets.</p>
+        </section>
+
+        <section class="contact-section">
+            <div class="contact-form-container">
+                <h2>Envoyez-nous un message</h2>
+                <form id="contact-form">
+                    <label for="contact-name">Votre Nom:</label>
+                    <input type="text" id="contact-name" name="name" required>
+
+                    <label for="contact-email">Votre Email:</label>
+                    <input type="email" id="contact-email" name="email" required>
+
+                    <label for="contact-subject">Sujet (facultatif):</label>
+                    <input type="text" id="contact-subject" name="subject">
+
+                    <label for="contact-message">Votre Message:</label>
+                    <textarea id="contact-message" name="message" rows="7" required></textarea>
+
+                    <button type="submit">Envoyer le message</button>
+                </form>
+            </div>
+
+            <div class="contact-info-container">
+                <h2>Nos Coordonnées</h2>
+                <p><strong>Adresse:</strong>Dakar, Sénégal</p>
+                <p><strong>Téléphone:</strong> +221 33 825 00 00</p>
+                <p><strong>Email:</strong> contact@decoelegance.com</p>
+                <div class="social-media">
+                    <h3>Suivez-nous</h3>
+                    <a href="https://facebook.com/decoelegance" target="_blank">Facebook</a>
+                    <a href="https://instagram.com/decoelegance" target="_blank">Instagram</a>
+                    <a href="https://pinterest.com/decoelegance" target="_blank">Pinterest</a>
+                </div>
+                <div class="map-container">
+                    <h3>Où nous trouver</h3>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d123488.80135128715!2d-17.548228342492298!3d14.711175941235355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec172f5b3c5bb71%3A0xb17c17d92d5db21f!2sDakar!5e0!3m2!1sfr!2ssn!4v1753282335824!5m2!1sfr!2ssn" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Déco Élégance. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contact-form');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Récupération des valeurs du formulaire
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email').value;
+            const subject = document.getElementById('contact-subject').value;
+            const message = document.getElementById('contact-message').value;
+            
+            // Validation simple
+            if (!name || !email || !message) {
+                alert('Veuillez remplir tous les champs obligatoires');
+                return;
+            }
+            
+            // Ici, vous devriez normalement faire une requête AJAX vers votre backend
+            // Pour cet exemple, nous allons simuler un envoi réussi
+            
+            // Création du message de succès s'il n'existe pas déjà
+            let successMessage = document.getElementById('form-success');
+            if (!successMessage) {
+                successMessage = document.createElement('div');
+                successMessage.id = 'form-success';
+                contactForm.appendChild(successMessage);
+            }
+            
+            // Affichage du message de succès
+            successMessage.style.display = 'block';
+            successMessage.innerHTML = `
+                <p><strong>Merci ${name} !</strong></p>
+                <p>Votre message a bien été envoyé. Nous vous répondrons dans les plus brefs délais.</p>
+            `;
+            
+            // Réinitialisation du formulaire (optionnel)
+            contactForm.reset();
+            
+            // Masquer le message après 5 secondes
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 5000);
+            
+            // Envoi des données à un serveur (exemple avec fetch API)
+            /*
+            fetch('/send-contact-form', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    subject: subject,
+                    message: message
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Gérer la réponse du serveur
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+            */
+        });
+    }
+    
+    // Animation des éléments au chargement
+    const contactElements = document.querySelectorAll('.contact-form-container, .contact-info-container');
+    contactElements.forEach((el, index) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = `all 0.5s ease ${index * 0.2}s`;
+        
+        setTimeout(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+        }, 100);
+    });
+});
+    </script>
+</body>
+</html>
