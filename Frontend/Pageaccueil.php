@@ -18,9 +18,10 @@ require_once '../Backend/fonction.php';
                 <ul class="nav">
                     <li><a href="#accueil">Accueil</a></li>
                     <li><a href="Produit.php">Produits</a></li>
-                    <li><a href="#services">Services</a></li>   
+                    <li><a href="services.html">Services</a></li>   
                     <li><a href="#contact">Contact</a></li>
-                    <li><a href="mon-compte.php">S'identifier</a></li>
+                    <li><a href="realisation.html">Realisation</a></li>
+                     <li><a href="mon-compte.php">S'identifier</a></li>
                 </ul>
             </nav>
             <div class="contact-header">
