@@ -48,10 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <ul class="nav">
                     <li><a href="accueilClient.php">Accueil</a></li>
                     <li><a href="produit.php">Produits</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="realisation.html">Réalisations</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="about.html">À propos</a></li>
+                    <li><a href="services.php">Services</a></li>
+                    <li><a href="realisation.php">Réalisations</a></li>
+                    <li><a href="blog.php">Blog</a></li>
+                    <li><a href="about.php">À propos</a></li>
                     <li><a href="profil.php">Profil</a></li>
                     <li><a href="panier.php">Panier</a></li>
                     <li><a href="contact.php"  style="color:  #ff8c00;" >Contact</a></li>

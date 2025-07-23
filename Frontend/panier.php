@@ -122,7 +122,7 @@ $total_final = $total_panier + $frais_livraison;
             <div class="empty-cart">
                 <h3>Votre panier est vide</h3>
                 <p>Découvrez nos magnifiques produits de décoration</p>
-                <a href="produits.php" class="continue-shopping">Continuer vos achats</a>
+                <a href="produit.php" class="continue-shopping">Continuer vos achats</a>
             </div>
         <?php else: ?>
             <div class="cart-container">
