@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Compte - Déco Élégance</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="index.html">Déco Élégance</a></div>
+            <ul class="main-menu">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="produits.html">Produits</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="realisations.html">Réalisations</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="user-actions">
+                <input type="search" placeholder="Rechercher...">
+                <a href="mon-compte.html" class="icon-link">
+                    <img src="images/icon-account.png" alt="Mon compte"> Mon compte
+                </a>
+                <a href="panier.html" class="icon-link">
+                    <img src="images/icon-cart.png" alt="Panier"> Panier
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>Mon Compte</h1>
+        </section>
+
+        <section class="account-section">
+            <div class="account-tabs">
+                <button class="tab-button active" data-tab="login">Connexion</button>
+                <button class="tab-button" data-tab="register">Inscription</button>
+            </div>
+
+            <div id="login" class="tab-content active">
+                <h2>Se connecter à votre compte</h2>
+                <form class="auth-form">
+                    <label for="login-email">Email:</label>
+                    <input type="email" id="login-email" required>
+
+                    <label for="login-password">Mot de passe:</label>
+                    <input type="password" id="login-password" required>
+
+                    <button type="submit">Se connecter</button>
+                    <a href="#">Mot de passe oublié ?</a>
+                </form>
+            </div>
+
+            <div id="register" class="tab-content hidden">
+                <h2>Créer un nouveau compte</h2>
+                <form class="auth-form">
+                    <label for="register-name">Nom complet:</label>
+                    <input type="text" id="register-name" required>
+
+                    <label for="register-email">Email:</label>
+                    <input type="email" id="register-email" required>
+
+                    <label for="register-password">Mot de passe:</label>
+                    <input type="password" id="register-password" required>
+
+                    <label for="register-confirm-password">Confirmer le mot de passe:</label>
+                    <input type="password" id="register-confirm-password" required>
+
+                    <button type="submit">S'inscrire</button>
+                </form>
+            </div>
+
+            <div id="dashboard" class="tab-content hidden">
+                <h2>Bienvenue, cher client !</h2>
+                <div class="account-info">
+                    <h3>Mes Informations</h3>
+                    <p>Email: <span id="dashboard-email">utilisateur@example.com</span></p>
+                    <p>Nom: <span id="dashboard-name">Votre Nom Complet</span></p>
+                    <p>Adresse: <span id="dashboard-address">123 Rue de la Déco, 75000 Paris</span></p>
+                    <button class="edit-info-btn">Modifier mes informations</button>
+                </div>
+                <div class="order-history">
+                    <h3>Historique de mes commandes</h3>
+                    <ul>
+                        <li>Commande #12345 - Date: 2025-07-20 - Total: 120 000 FCFA - Statut: Livrée</li>
+                        <li>Commande #12346 - Date: 2025-07-22 - Total: 60 000 FCFA - Statut: En cours de traitement</li>
+                        <li>Réservation service #SRV001 - Date: 2025-07-25 - Service: Aménagement - Statut: Confirmée</li>
+                        </ul>
+                </div>
+                <button class="logout-btn">Se déconnecter</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Déco Élégance. Tous droits réservés.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
