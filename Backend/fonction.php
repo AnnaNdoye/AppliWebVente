@@ -903,5 +903,243 @@ function creerCommande($client_id, $adresse_livraison, $mode_paiement, $details_
     }
 }
 
+// Fonction pour traiter les messages de contact des clients connectés
+function contact_recup($client_id, $prenom, $nom, $email, $telephone, $service, $message) {
+    $conn = connectDB();
+    
+    // Validation des données
+    if (empty($prenom) || empty($nom) || empty($email) || empty($service) || empty($message)) {
+        $conn->close();
+        return ['success' => false, 'message' => 'Veuillez remplir tous les champs obligatoires.'];
+    }
+    
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $conn->close();
+        return ['success' => false, 'message' => 'Adresse email invalide.'];
+    }
+    
+    // Préparer les données pour l'insertion
+    $nom_complet = trim($prenom . ' ' . $nom);
+    $date_contact = date('Y-m-d H:i:s');
+    $statut = 'nouveau'; // Statut par défaut
+    
+    // Insertion dans la table contacts
+    $sql = "INSERT INTO contacts (client_id, nom_complet, email, telephone, service, message, date_contact, statut) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    
+    $stmt = $conn->prepare($sql);
+    
+    if ($stmt) {
+        $stmt->bind_param("isssssss", $client_id, $nom_complet, $email, $telephone, $service, $message, $date_contact, $statut);
+        
+        if ($stmt->execute()) {
+            $stmt->close();
+            $conn->close();
+            return ['success' => true, 'message' => 'Votre message a été envoyé avec succès ! Nous vous contacterons dans les plus brefs délais.'];
+        } else {
+            $stmt->close();
+            $conn->close();
+            return ['success' => false, 'message' => 'Erreur lors de l\'envoi du message. Veuillez réessayer.'];
+        }
+    } else {
+        $conn->close();
+        return ['success' => false, 'message' => 'Erreur de préparation de la requête.'];
+    }
+}
 
+// Fonction pour obtenir les informations détaillées d'un client
+function obtenirInfosClient($client_id) {
+    $conn = connectDB();
+    
+    $sql = "SELECT * FROM clients WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    
+    if ($stmt) {
+        $stmt->bind_param("i", $client_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows === 1) {
+            $client = $result->fetch_assoc();
+            $stmt->close();
+            $conn->close();
+            return $client;
+        }
+        $stmt->close();
+    }
+    
+    $conn->close();
+    return null;
+}
+
+// Fonction pour modifier le profil d'un client
+function modifierProfilClient($client_id, $nom_complet, $telephone, $adresse, $mot_de_passe_actuel = '', $nouveau_mot_de_passe = '', $confirmer_mot_de_passe = '') {
+    $conn = connectDB();
+    
+    // Validation des données de base
+    if (empty($nom_complet) || empty($telephone)) {
+        $conn->close();
+        return ['success' => false, 'message' => 'Le nom complet et le téléphone sont obligatoires.'];
+    }
+    
+    // Si l'utilisateur veut changer son mot de passe
+    if (!empty($mot_de_passe_actuel) || !empty($nouveau_mot_de_passe) || !empty($confirmer_mot_de_passe)) {
+        // Vérifier que tous les champs de mot de passe sont remplis
+        if (empty($mot_de_passe_actuel) || empty($nouveau_mot_de_passe) || empty($confirmer_mot_de_passe)) {
+            $conn->close();
+            return ['success' => false, 'message' => 'Veuillez remplir tous les champs pour changer le mot de passe.'];
+        }
+        
+        // Vérifier que les nouveaux mots de passe correspondent
+        if ($nouveau_mot_de_passe !== $confirmer_mot_de_passe) {
+            $conn->close();
+            return ['success' => false, 'message' => 'Les nouveaux mots de passe ne correspondent pas.'];
+        }
+        
+        // Vérifier la longueur du nouveau mot de passe
+        if (strlen($nouveau_mot_de_passe) < 6) {
+            $conn->close();
+            return ['success' => false, 'message' => 'Le nouveau mot de passe doit contenir au moins 6 caractères.'];
+        }
+        
+        // Vérifier l'ancien mot de passe
+        $sql_check = "SELECT mot_de_passe FROM clients WHERE id = ?";
+        $stmt_check = $conn->prepare($sql_check);
+        
+        if ($stmt_check) {
+            $stmt_check->bind_param("i", $client_id);
+            $stmt_check->execute();
+            $result = $stmt_check->get_result();
+            
+            if ($result->num_rows === 1) {
+                $client = $result->fetch_assoc();
+                if (!password_verify($mot_de_passe_actuel, $client['mot_de_passe'])) {
+                    $stmt_check->close();
+                    $conn->close();
+                    return ['success' => false, 'message' => 'Le mot de passe actuel est incorrect.'];
+                }
+            } else {
+                $stmt_check->close();
+                $conn->close();
+                return ['success' => false, 'message' => 'Client introuvable.'];
+            }
+            $stmt_check->close();
+        }
+        
+        // Hacher le nouveau mot de passe
+        $nouveau_mot_de_passe_hash = password_hash($nouveau_mot_de_passe, PASSWORD_DEFAULT);
+        
+        // Mettre à jour avec le nouveau mot de passe
+        $sql = "UPDATE clients SET nom_complet = ?, telephone = ?, adresse = ?, mot_de_passe = ? WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        
+        if ($stmt) {
+            $stmt->bind_param("ssssi", $nom_complet, $telephone, $adresse, $nouveau_mot_de_passe_hash, $client_id);
+            
+            if ($stmt->execute()) {
+                $stmt->close();
+                $conn->close();
+                return ['success' => true, 'message' => 'Profil et mot de passe mis à jour avec succès !'];
+            } else {
+                $stmt->close();
+                $conn->close();
+                return ['success' => false, 'message' => 'Erreur lors de la mise à jour.'];
+            }
+        }
+    } else {
+        // Mettre à jour sans changer le mot de passe
+        $sql = "UPDATE clients SET nom_complet = ?, telephone = ?, adresse = ? WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        
+        if ($stmt) {
+            $stmt->bind_param("sssi", $nom_complet, $telephone, $adresse, $client_id);
+            
+            if ($stmt->execute()) {
+                $stmt->close();
+                $conn->close();
+                return ['success' => true, 'message' => 'Profil mis à jour avec succès !'];
+            } else {
+                $stmt->close();
+                $conn->close();
+                return ['success' => false, 'message' => 'Erreur lors de la mise à jour.'];
+            }
+        }
+    }
+    
+    $conn->close();
+    return ['success' => false, 'message' => 'Erreur de préparation de la requête.'];
+}
+
+// Fonction pour obtenir l'historique des commandes d'un client
+function obtenirHistoriqueCommandes($client_id) {
+    $conn = connectDB();
+    $commandes = [];
+    
+    $sql = "SELECT * FROM commandes WHERE client_id = ? ORDER BY date_commande DESC";
+    $stmt = $conn->prepare($sql);
+    
+    if ($stmt) {
+        $stmt->bind_param("i", $client_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        while ($row = $result->fetch_assoc()) {
+            $commandes[] = $row;
+        }
+        $stmt->close();
+    }
+    
+    $conn->close();
+    return $commandes;
+}
+
+// Fonction pour obtenir une commande par ID
+function obtenirCommandeParId($commande_id, $client_id = null) {
+    $conn = connectDB();
+    
+    if ($client_id) {
+        $sql = "SELECT * FROM commandes WHERE id = ? AND client_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ii", $commande_id, $client_id);
+    } else {
+        $sql = "SELECT * FROM commandes WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $commande_id);
+    }
+    
+    if ($stmt) {
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows === 1) {
+            $commande = $result->fetch_assoc();
+            $stmt->close();
+            $conn->close();
+            return $commande;
+        }
+        $stmt->close();
+    }
+    
+    $conn->close();
+    return null;
+}
+
+// Fonction pour mettre à jour le statut d'une commande
+function mettreAJourStatutCommande($commande_id, $nouveau_statut) {
+    $conn = connectDB();
+    
+    $sql = "UPDATE commandes SET statut = ? WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    
+    if ($stmt) {
+        $stmt->bind_param("si", $nouveau_statut, $commande_id);
+        $result = $stmt->execute();
+        $stmt->close();
+        $conn->close();
+        return $result;
+    }
+    
+    $conn->close();
+    return false;
+}
 ?>
