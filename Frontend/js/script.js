@@ -133,3 +133,87 @@
             animateOnScroll();
         });
     
+        //mon-compte.html
+
+// Gestion des onglets
+document.querySelectorAll('.tab-button').forEach(button => {
+    button.addEventListener('click', () => {
+        const tabId = button.getAttribute('data-tab');
+        
+        // Retirer la classe active de tous les boutons et contenus
+        document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.add('hidden');
+            content.classList.remove('active');
+        });
+        
+        // Ajouter la classe active au bouton cliqué et au contenu correspondant
+        button.classList.add('active');
+        const activeContent = document.getElementById(tabId);
+        activeContent.classList.remove('hidden');
+        activeContent.classList.add('active', 'fade-in');
+    });
+});
+
+// Simulation de connexion
+document.querySelector('#login .auth-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('login-email').value;
+    const name = email.split('@')[0]; // Utiliser la partie avant @ comme nom
+    
+    // Mettre à jour les infos du dashboard
+    document.getElementById('dashboard-email').textContent = email;
+    document.getElementById('dashboard-name').textContent = name;
+    
+    // Basculer vers le dashboard
+    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.add('hidden');
+        content.classList.remove('active');
+    });
+    
+    document.getElementById('dashboard').classList.remove('hidden');
+    document.getElementById('dashboard').classList.add('active', 'fade-in');
+});
+
+// Simulation d'inscription
+document.querySelector('#register .auth-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const password = document.getElementById('register-password').value;
+    const confirmPassword = document.getElementById('register-confirm-password').value;
+    
+    if (password !== confirmPassword) {
+        alert('Les mots de passe ne correspondent pas !');
+        return;
+    }
+    
+    alert('Inscription réussie ! Vous pouvez maintenant vous connecter.');
+    
+    // Basculer vers l'onglet connexion
+    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.add('hidden');
+        content.classList.remove('active');
+    });
+    
+    document.querySelector('[data-tab="login"]').classList.add('active');
+    document.getElementById('login').classList.remove('hidden');
+    document.getElementById('login').classList.add('active', 'fade-in');
+});
+
+// Bouton de déconnexion
+document.querySelector('.logout-btn').addEventListener('click', () => {
+    // Basculer vers l'onglet connexion
+    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.add('hidden');
+        content.classList.remove('active');
+    });
+    
+    document.querySelector('[data-tab="login"]').classList.add('active');
+    document.getElementById('login').classList.remove('hidden');
+    document.getElementById('login').classList.add('active', 'fade-in');
+    
+    // Réinitialiser les formulaires
+    document.querySelectorAll('form').forEach(form => form.reset());
+});

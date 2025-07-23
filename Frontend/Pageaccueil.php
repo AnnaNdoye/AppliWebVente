@@ -7,7 +7,7 @@ require_once '../Backend/fonction.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DécoÉlégance - Votre Expert en Décoration</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <!-- Header -->
@@ -20,6 +20,7 @@ require_once '../Backend/fonction.php';
                     <li><a href="#produits">Produits</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li><a href="mon-compte.php">S'identifier</a></li>
                 </ul>
             </nav>
             <div class="contact-header">
@@ -357,12 +358,12 @@ require_once '../Backend/fonction.php';
                     <label>Téléphone</label>
                     <input type="tel" required>
                 </div>
-                <button type="submit" class="btn">Confirmer le rendez-vous</button>
+                <button type="submit" class="btn">Confirmer</button>
             </form>
         </div>
     </div>
 
-<script src="script.js"></script>
+<script src="js/script.js"></script>
 
 </body>
 </html>
