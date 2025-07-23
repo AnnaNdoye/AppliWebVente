@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luminaires - Déco Élégance</title>
+    <style>
+    
+/* Collection Header */
+.collection-header {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(244, 228, 188, 0.05));
+    margin-bottom: 2rem;
+}
+
+.collection-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #d4af37, #f4e4bc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.collection-header p {
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+}
+
+/* Products Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.product-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.product-img {
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.product-card:hover .product-img img {
+    transform: scale(1.05);
+}
+
+.product-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #d4af37;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.product-info {
+    padding: 1.5rem;
+}
+
+.product-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.product-description {
+    color: #666;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.product-price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #333;
+    margin: 1rem 0;
+}
+
+.product-origin {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.product-origin img {
+    width: 20px;
+    margin-right: 0.5rem;
+}
+
+.product-details {
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 1.5rem;
+}
+
+.product-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.7rem 1.2rem;
+    background: linear-gradient(135deg, #d4af37, #f4e4bc);
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    flex: 1;
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #f4e4bc, #d4af37);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+}
+
+.btn-outline {
+    padding: 0.7rem 1.2rem;
+    background: transparent;
+    border: 1px solid #d4af37;
+    color: #d4af37;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    flex: 1;
+}
+
+.btn-outline:hover {
+    background: rgba(212, 175, 55, 0.1);
+}
+
+/* Modal Styles (identique à la page tapis) */
+.modal {
+    /* ... (reprendre le même style que la page tapis) ... */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .collection-header h1 {
+        font-size: 2rem;
+    }
+    
+    .product-actions {
+        flex-direction: column;
+    }
+}
+ 
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="index.html">Déco Élégance</a></div>
+            <ul class="main-menu"><li>
+                <a href="accueilClient.php">Accueil</a></li>
+                <li><a href="produit.php">Produits</a></li>
+                <li><a href="services.php">Services</a></li>
+                <li><a href="realisation.php">Réalisations</a></li>
+                <li><a href="blog.php">Blog</a></li>
+                <li><a href="about.php">À propos</a></li>
+                <li><a href="profil.php">Profil</a></li>
+                <li><a href="panier.php">Panier</a></li>
+                <li><a href="contact.php">Contact</a></li>
+            </ul>
+            <div class="user-actions">
+                <input type="search" placeholder="Rechercher...">
+                <a href="mon-compte.html" class="icon-link">
+                    <img src="images/icon-account.png" alt="Mon compte"> Mon compte
+                </a>
+                <a href="panier.html" class="icon-link">
+                    <img src="images/icon-cart.png" alt="Panier"> Panier
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="collection-header">
+            <h1>Collection Luminaires</h1>
+            <p>Découvrez notre sélection exclusive de luminaires pour créer des ambiances uniques dans chaque pièce.</p>
+        </section>
+
+        <section class="products-grid">
+            <!-- Luminaire 1 -->
+            <div class="product-card" data-product="1">
+                <div class="product-img">
+                    <img src="images/luminaire1.jpg" alt="Suspension en verre soufflé">
+                    <span class="product-badge">Nouveau</span>
+                </div>
+                <div class="product-info">
+                    <h3>Suspension "Éther"</h3>
+                    <p class="product-description">Suspension en verre soufflé à la main, diffusion lumineuse douce et uniforme.</p>
+                    <div class="product-price">249 €</div>
+                    <div class="product-origin">
+                        <img src="https://flagcdn.com/w20/it.png" alt="Italie"> Fabriqué en Italie
+                    </div>
+                    <div class="product-details">Hauteur: 45cm · Diamètre: 35cm</div>
+                    <div class="product-actions">
+                        <button class="btn-outline" onclick="openModal(1)">Détails</button>
+                        <button class="btn">Ajouter au panier</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Luminaire 2 -->
+            <div class="product-card" data-product="2">
+                <div class="product-img">
+                    <img src="images/luminaire2.jpg" alt="Lampe à poser en marbre">
+                </div>
+                <div class="product-info">
+                    <h3>Lampe "Minéral"</h3>
+                    <p class="product-description">Lampe à poser en marbre blanc de Carrare avec abat-jour en lin.</p>
+                    <div class="product-price">179 €</div>
+                    <div class="product-origin">
+                        <img src="https://flagcdn.com/w20/fr.png" alt="France"> Fabriqué en France
+                    </div>
+                    <div class="product-details">Hauteur: 55cm · Matière: Marbre</div>
+                    <div class="product-actions">
+                        <button class="btn-outline" onclick="openModal(2)">Détails</button>
+                        <button class="btn">Ajouter au panier</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Luminaire 3 -->
+            <div class="product-card" data-product="3">
+                <div class="product-img">
+                    <img src="images/luminaire3.jpg" alt="Applique murale design">
+                    <span class="product-badge">Best-seller</span>
+                </div>
+                <div class="product-info">
+                    <h3>Applique "Filament"</h3>
+                    <p class="product-description">Applique murale design avec ampoule filament visible, style industriel.</p>
+                    <div class="product-price">129 €</div>
+                    <div class="product-origin">
+                        <img src="https://flagcdn.com/w20/es.png" alt="Espagne"> Fabriqué en Espagne
+                    </div>
+                    <div class="product-details">Longueur: 60cm · Métal brossé</div>
+                    <div class="product-actions">
+                        <button class="btn-outline" onclick="openModal(3)">Détails</button>
+                        <button class="btn">Ajouter au panier</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Luminaire 4 -->
+            <div class="product-card" data-product="4">
+                <div class="product-img">
+                    <img src="images/luminaire4.jpg" alt="Lustre contemporain">
+                </div>
+                <div class="product-info">
+                    <h3>Lustre "Aurore"</h3>
+                    <p class="product-description">Lustre contemporain à multiples bras avec cristaux taillés à la main.</p>
+                    <div class="product-price">899 €</div>
+                    <div class="product-origin">
+                        <img src="https://flagcdn.com/w20/cz.png" alt="République Tchèque"> Fabriqué en République Tchèque
+                    </div>
+                    <div class="product-details">Diamètre: 80cm · 12 ampoules</div>
+                    <div class="product-actions">
+                        <button class="btn-outline" onclick="openModal(4)">Détails</button>
+                        <button class="btn">Ajouter au panier</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Luminaire 5 -->
+            <div class="product-card" data-product="5">
+                <div class="product-img">
+                    <img src="images/luminaire5.jpg" alt="Lampe de table design">
+                </div>
+                <div class="product-info">
+                    <h3>Lampe "Nebula"</h3>
+                    <p class="product-description">Lampe de table design avec base en céramique et diffuseur en verre dépoli.</p>
+                    <div class="product-price">159 €</div>
+                    <div class="product-origin">
+                        <img src="https://flagcdn.com/w20/pt.png" alt="Portugal"> Fabriqué au Portugal
+                    </div>
+                    <div class="product-details">Hauteur: 40cm · Céramique</div>
+                    <div class="product-actions">
+                        <button class="btn-outline" onclick="openModal(5)">Détails</button>
+                        <button class="btn">Ajouter au panier</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Luminaire 6 -->
+            <div class="product-card" data-product="6">
+                <div class="product-img">
+                    <img src="images/luminaire6.jpg" alt="Plaque LED design">
+                    <span class="product-badge">Promo</span>
+                </div>
+                <div class="product-info">
+                    <h3>Plaque LED "Pixel"</h3>
+                    <p class="product-description">Plaque LED ultra-plate avec technologie dimmable et température réglable.</p>
+                    <div class="product-price">349 € <span style="text-decoration: line-through; color: #999; font-size: 16px; margin-left: 5px;">449 €</span></div>
+                    <div class="product-origin">
+                        <img src="https://flagcdn.com/w20/de.png" alt="Allemagne"> Fabriqué en Allemagne
+                    </div>
+                    <div class="product-details">60x60cm · 3000-6000K</div>
+                    <div class="product-actions">
+                        <button class="btn-outline" onclick="openModal(6)">Détails</button>
+                        <button class="btn">Ajouter au panier</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal -->
+        <div id="productModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalProductTitle">Suspension "Éther"</h2>
+                    <span class="close-modal" onclick="closeModal()">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-product">
+                        <div class="modal-product-images">
+                            <div class="modal-thumbnails">
+                                <img src="images/luminaire1.jpg" alt="Suspension Éther" class="modal-thumbnail active" onclick="changeMainImage(this)">
+                                <img src="images/luminaire1_detail.jpg" alt="Détail verre" class="modal-thumbnail" onclick="changeMainImage(this)">
+                                <img src="images/luminaire1_ambiance.jpg" alt="En situation" class="modal-thumbnail" onclick="changeMainImage(this)">
+                            </div>
+                            <img src="images/luminaire1.jpg" alt="Suspension Éther" class="modal-main-image">
+                        </div>
+                        <div class="modal-product-info">
+                            <h3 id="modalProductName">Suspension "Éther"</h3>
+                            <div class="modal-product-price" id="modalProductPrice">249 €</div>
+                            <div class="modal-product-description" id="modalProductDescription">
+                                Cette suspension artisanale en verre soufflé à la main diffuse une lumière douce et uniforme, créant une ambiance chaleureuse. Chaque pièce est unique grâce au travail manuel des artisans verriers italiens.
+                            </div>
+                            <div class="modal-product-details">
+                                <h4>Caractéristiques</h4>
+                                <ul id="modalProductFeatures">
+                                    <li>Matériau : Verre soufflé à la main</li>
+                                    <li>Dimensions : 45cm (H) x 35cm (Ø)</li>
+                                    <li>Poids : 3.2 kg</li>
+                                    <li>Ampoule incluse : LED 9W (non-dimmable)</li>
+                                    <li>Installation : Suspendu (câble inclus)</li>
+                                    <li>Garantie : 2 ans</li>
+                                </ul>
+                            </div>
+                            <div class="quantity-selector">
+                                <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+                                <input type="number" class="quantity-input" value="1" min="1">
+                                <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+                            </div>
+                            <div class="modal-actions">
+                                <button class="btn-outline">
+                                    <i class="far fa-heart"></i> Ajouter aux favoris
+                                </button>
+                                <button class="btn">
+                                    <i class="fas fa-shopping-cart"></i> Ajouter au panier
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Déco Élégance</h3>
+                    <p>Votre destination premium pour la décoration d'intérieur haut de gamme depuis 2010.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Catégories</h3>
+                    <ul>
+                        <li><a href="#">Tapis</a></li>
+                        <li><a href="#">Luminaires</a></li>
+                        <li><a href="#">Meubles</a></li>
+                        <li><a href="#">Textiles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Informations</h3>
+                    <ul>
+                        <li><a href="#">Livraison</a></li>
+                        <li><a href="#">Paiement</a></li>
+                        <li><a href="#">Retours</a></li>
+                        <li><a href="#">CGV</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="tel:+33123456789">01 23 45 67 89</a></li>
+                        <li><a href="mailto:contact@decoelegance.com">contact@decoelegance.com</a></li>
+                        <li>12 Rue du Luxe, 75008 Paris</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Déco Élégance. Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+
+    <script>// Données des produits
+const products = {
+    1: {
+        title: "Suspension \"Éther\"",
+        price: "249 €",
+        description: "Cette suspension artisanale en verre soufflé à la main diffuse une lumière douce et uniforme, créant une ambiance chaleureuse. Chaque pièce est unique grâce au travail manuel des artisans verriers italiens.",
+        features: [
+            "Matériau : Verre soufflé à la main",
+            "Dimensions : 45cm (H) x 35cm (Ø)",
+            "Poids : 3.2 kg",
+            "Ampoule incluse : LED 9W (non-dimmable)",
+            "Installation : Suspendu (câble inclus)",
+            "Garantie : 2 ans"
+        ],
+        images: [
+            "images/luminaire1.jpg",
+            "images/luminaire1_detail.jpg",
+            "images/luminaire1_ambiance.jpg"
+        ]
+    },
+    2: {
+        title: "Lampe \"Minéral\"",
+        price: "179 €",
+        description: "Lampe à poser en marbre blanc de Carrare avec abat-jour en lin naturel. La base en marbre massif apporte stabilité et élégance à ce luminaire intemporel.",
+        features: [
+            "Matériau : Marbre de Carrare & lin",
+            "Dimensions : 55cm (H) x 25cm (Ø)",
+            "Poids : 4.8 kg",
+            "Ampoule : E27 max 60W (non incluse)",
+            "Interrupteur : Intégré au câble",
+            "Garantie : 2 ans"
+        ],
+        images: [
+            "images/luminaire2.jpg",
+            "images/luminaire2_detail.jpg",
+            "images/luminaire2_ambiance.jpg"
+        ]
+    },
+    // ... Ajouter les autres produits de la même manière
+};
+
+// Fonctions identiques à la page tapis
+function openModal(productId) {
+    const product = products[productId];
+    if (!product) return;
+    
+    // Même implémentation que la page tapis
+    // ...
+}
+
+function closeModal() {
+    // ...
+}
+
+function changeMainImage(element) {
+    // ...
+}
+
+function changeQuantity(change) {
+    // ...
+}
+
+// Animation au chargement
+document.addEventListener('DOMContentLoaded', function() {
+    const productCards = document.querySelectorAll('.product-card');
+    
+    productCards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = `all 0.5s ease ${index * 0.1}s`;
+        
+        setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, 100);
+    });
+});</script>
+</body>
+</html>
