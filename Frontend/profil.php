@@ -112,7 +112,7 @@ $historique_commandes = obtenirHistoriqueCommandes($_SESSION['client_id']);
         
         .profile-nav a:hover,
         .profile-nav a.active {
-            background: #667eea;
+            background: #d4af37;
             color: white;
         }
         
@@ -183,14 +183,14 @@ $historique_commandes = obtenirHistoriqueCommandes($_SESSION['client_id']);
         
         .message-item {
             padding: 15px;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #d4af37;
             background: #f8f9fa;
             margin-bottom: 15px;
             border-radius: 0 5px 5px 0;
         }
         
         .btn-edit {
-            background: #17a2b8;
+            background: #d4af37;
             color: white;
             border: none;
             padding: 10px 20px;
